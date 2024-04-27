@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(routes);
+app.use("/api", routes);
 require("./db/index");
 const port = process.env.PORT || 8080;
 
