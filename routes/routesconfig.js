@@ -51,7 +51,7 @@ router.get("/suppliers", (req, res) => {
 });
 
 router.post("/addSupplier", (req, res) => {
-  addSupplier()
+  addSupplier(req.body.suppliername)
     .then((resp) => {
       res.send(resp);
     })
