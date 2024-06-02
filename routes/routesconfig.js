@@ -4,28 +4,60 @@ const {
   createAUser,
   validateOtp,
 } = require("../controllers/usersController");
+const {
+  getSuppliers,
+  addSupplier,
+} = require("../controllers/supplierController");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("hello world");
-});
-
 router.post("/isUser", (req, res) => {
-  getIsUserExist(req.body.mailId).then((response) => {
-    res.send(response.body);
-  });
+  getIsUserExist(req.body.mailId)
+    .then((response) => {
+      res.send(response.body);
+    })
+    .catch((err) => {
+      res.send("Internal Server Error");
+    });
 });
 
 router.post("/signUpUser", (req, res) => {
-  createAUser(req.body).then((resp) => {
-    res.send(resp.body);
-  });
+  createAUser(req.body)
+    .then((resp) => {
+      res.send(resp.body);
+    })
+    .catch((err) => {
+      res.send("Internal Server Error");
+    });
 });
 
 router.post("/validateOtp", (req, res) => {
-  validateOtp(req.body).then((response) => {
-    res.send(response);
-  });
+  validateOtp(req.body)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send("Internal Server Error");
+    });
+});
+
+router.get("/suppliers", (req, res) => {
+  getSuppliers()
+    .then((resp) => {
+      res.send(resp);
+    })
+    .catch((err) => {
+      res.send("Internal Server Error");
+    });
+});
+
+router.post("/appSupplier", (req, res) => {
+  addSupplier()
+    .then((resp) => {
+      res.send(resp);
+    })
+    .catch((err) => {
+      res.send("Internal Server Error");
+    });
 });
 
 module.exports = router;
