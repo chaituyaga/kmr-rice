@@ -11,36 +11,42 @@ const schema = new dynamoose.Schema({
     rangeKey: true,
     required: true,
   },
-  INVOICE_DATE: {
-    type: Date,
-    required: true,
-  },
-  BRAND: {
-    type: String,
-    required: true,
-  },
-  BUYING_PRICE: {
-    type: Number,
-    required: true,
-  },
-  MRP: {
-    type: Number,
-    required: true,
-  },
-  QUANTITY: {
-    type: Number,
-    required: true,
-  },
-  TYPE: {
-    type: String,
-    required: true,
-  },
-  PACK: {
-    type: Number,
-    required: true,
+  DATA: {
+    type: Array,
+    schema: [
+      {
+        type: Object,
+        schema: {
+          BRAND: {
+            type: String,
+            required: true,
+          },
+          BUYING_PRICE: {
+            type: Number,
+            required: true,
+          },
+          MRP: {
+            type: Number,
+            required: true,
+          },
+          QUANTITY: {
+            type: Number,
+            required: true,
+          },
+          TYPE: {
+            type: String,
+            required: true,
+          },
+          PACK: {
+            type: Number,
+            required: true,
+          },
+        },
+      },
+    ],
   },
 });
 
-const stocks = dynamoose.model("STOCKS", schema);
+const Stocks = dynamoose.model("STOCKS", schema);
 
-module.exports = stocks;
+module.exports = Stocks;

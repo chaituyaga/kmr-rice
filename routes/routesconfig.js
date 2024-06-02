@@ -8,6 +8,7 @@ const {
   getSuppliers,
   addSupplier,
 } = require("../controllers/supplierController");
+const { getAllStocks, addStocks } = require("../controllers/stocksController");
 const router = express.Router();
 
 router.post("/isUser", (req, res) => {
@@ -57,6 +58,26 @@ router.post("/addSupplier", (req, res) => {
     })
     .catch((err) => {
       res.send("Internal Server Error");
+    });
+});
+
+router.get("/stocks", (req, res) => {
+  getAllStocks()
+    .then((resp) => {
+      res.send(resp);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+router.post("/addStocks", (req, res) => {
+  addStocks(req.body.value)
+    .then((resp) => {
+      res.send("Data Posted");
+    })
+    .catch((err) => {
+      res.send(err);
     });
 });
 
