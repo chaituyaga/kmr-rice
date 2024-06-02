@@ -50,7 +50,7 @@ router.get("/suppliers", (req, res) => {
     });
 });
 
-router.post("/appSupplier", (req, res) => {
+router.post("/addSupplier", (req, res) => {
   addSupplier()
     .then((resp) => {
       res.send(resp);
