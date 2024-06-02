@@ -9,6 +9,10 @@ const {
   addSupplier,
 } = require("../controllers/supplierController");
 const { getAllStocks, addStocks } = require("../controllers/stocksController");
+const {
+  getCustomers,
+  addCustomer,
+} = require("../controllers/customerController");
 const router = express.Router();
 
 router.post("/isUser", (req, res) => {
@@ -53,6 +57,26 @@ router.get("/suppliers", (req, res) => {
 
 router.post("/addSupplier", (req, res) => {
   addSupplier(req.body.suppliername)
+    .then((resp) => {
+      res.send(resp);
+    })
+    .catch((err) => {
+      res.send("Internal Server Error");
+    });
+});
+
+router.get("/customers", (req, res) => {
+  getCustomers()
+    .then((resp) => {
+      res.send(resp);
+    })
+    .catch((err) => {
+      res.send("Internal Server Error");
+    });
+});
+
+router.post("/addCustomer", (req, res) => {
+  addCustomer(req.body.customername)
     .then((resp) => {
       res.send(resp);
     })
