@@ -3,9 +3,10 @@ const Suppliers = require("../models/supplierModel");
 exports.getSuppliers = async () => {
   const allSuppliers = await Suppliers.scan().exec();
   if (allSuppliers.toJSON().length) {
+    let arr = allSuppliers.toJSON().map((i) => i.SUPPLIER_NAME);
     return {
       status: 200,
-      body: allSuppliers.toJSON(),
+      body: arr,
     };
   } else {
     return {
