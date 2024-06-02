@@ -74,7 +74,7 @@ router.get("/stocks", (req, res) => {
 router.post("/addStocks", (req, res) => {
   addStocks(req.body.value)
     .then((resp) => {
-      res.send("Data Posted");
+      res.send(resp);
     })
     .catch((err) => {
       res.send(err);

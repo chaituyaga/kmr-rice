@@ -31,7 +31,7 @@ exports.addStocks = async (data) => {
     if (err) {
       return {
         status: 400,
-        body: err.message,
+        body: err,
       };
     } else {
       return {

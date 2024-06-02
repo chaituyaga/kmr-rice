@@ -2,7 +2,7 @@ const dynamoose = require("dynamoose");
 
 const schema = new dynamoose.Schema({
   INVOICE_NUMBER: {
-    type: Number,
+    type: String,
     hashKey: true,
     required: true,
   },
@@ -22,15 +22,15 @@ const schema = new dynamoose.Schema({
             required: true,
           },
           BUYING_PRICE: {
-            type: Number,
+            type: String,
             required: true,
           },
           MRP: {
-            type: Number,
+            type: String,
             required: true,
           },
           QUANTITY: {
-            type: Number,
+            type: String,
             required: true,
           },
           TYPE: {
@@ -38,7 +38,7 @@ const schema = new dynamoose.Schema({
             required: true,
           },
           PACK: {
-            type: Number,
+            type: String,
             required: true,
           },
         },
