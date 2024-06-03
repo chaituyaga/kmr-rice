@@ -43,21 +43,19 @@ exports.addStocks = async (data) => {
 };
 
 exports.updateStocks = async (data) => {
-  Stocks.update(
-    { INVOICE_NUMBER: data.INVOICE_NUMBER },
-    { DATA: data.value },
-    (err, results) => {
-      if (err) {
-        return {
-          status: 400,
-          body: err,
-        };
-      } else {
-        return {
-          status: 200,
-          body: results,
-        };
-      }
-    }
-  );
+  let promiseArr = [];
+  data.forEach((i) => {
+    promiseArr.push(Stocks.update(i));
+  });
+  await Promise.all(promiseArr)
+    .then((res) => {
+      console.log(res);
+      return {
+        status: 200,
+        body: res,
+      };
+    })
+    .catch((err) => {
+      throw err;
+    });
 };

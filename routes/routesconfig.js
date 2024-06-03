@@ -109,13 +109,10 @@ router.post("/addStocks", (req, res) => {
     });
 });
 
-router.post("/updateStocks", (req, res) => {
-  updateStocks({
-    INVOICE_NUMBER: req.body[0].INVOICE_NUMBER,
-    value: req.body[0].DATA,
-  })
+router.post("/updateStocks", async (req, res) => {
+  await updateStocks(req.body)
     .then((resp) => {
-      res.send(resp);
+      res.send("Data Updated");
     })
     .catch((err) => {
       res.send(err);
