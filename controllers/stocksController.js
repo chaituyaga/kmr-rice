@@ -41,3 +41,23 @@ exports.addStocks = async (data) => {
     }
   });
 };
+
+exports.updateStocks = async (data) => {
+  Stocks.update(
+    { INVOICE_NUMBER: data.INVOICE_NUMBER },
+    { DATA: data.value },
+    (err, results) => {
+      if (err) {
+        return {
+          status: 400,
+          body: err,
+        };
+      } else {
+        return {
+          status: 200,
+          body: results,
+        };
+      }
+    }
+  );
+};

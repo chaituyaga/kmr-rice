@@ -8,7 +8,11 @@ const {
   getSuppliers,
   addSupplier,
 } = require("../controllers/supplierController");
-const { getAllStocks, addStocks } = require("../controllers/stocksController");
+const {
+  getAllStocks,
+  addStocks,
+  updateStocks,
+} = require("../controllers/stocksController");
 const {
   getCustomers,
   addCustomer,
@@ -97,6 +101,19 @@ router.get("/stocks", (req, res) => {
 
 router.post("/addStocks", (req, res) => {
   addStocks(req.body.value)
+    .then((resp) => {
+      res.send(resp);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+router.post("/updateStocks", (req, res) => {
+  updateStocks({
+    INVOICE_NUMBER: req.body[0].INVOICE_NUMBER,
+    value: req.body[0].DATA,
+  })
     .then((resp) => {
       res.send(resp);
     })
